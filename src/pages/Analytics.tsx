@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { useExpenses, useCategories } from '../store/ExpenseContext';
 import { 
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, ResponsiveContainer,
-  PieChart, Pie, Cell, AreaChart, Area
+  PieChart, Pie, Cell
 } from 'recharts';
 import { formatCurrency } from '../utils/formatters';
 
@@ -74,7 +74,7 @@ const Analytics: React.FC = () => {
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
       return (
-        <div style={{ backgroundColor: 'white', padding: '12px', border: 'none', borderRadius: '12px', boxShadow: '0 4px 20px rgba(30, 30, 30, 0.05)' }}>
+        <div style={{ backgroundColor: 'var(--surface-color)', padding: '12px', border: '1px solid var(--border-color)', borderRadius: '12px', boxShadow: '0 4px 20px rgba(30, 30, 30, 0.2)' }}>
           <p className="font-semibold text-[var(--text-main)]">{`${label || payload[0].name}`}</p>
           <p className="font-bold text-[var(--primary)] mt-1">{formatCurrency(payload[0].value)}</p>
         </div>
@@ -92,9 +92,9 @@ const Analytics: React.FC = () => {
         </div>
       </div>
 
-      <div className="card mb-6 bg-gradient-to-br from-blue-50 to-indigo-50 border-none flex flex-col items-center justify-center p-8">
-        <span className="text-gray-500 font-medium mb-2 uppercase tracking-widest text-sm">Total Company Spending</span>
-        <span className="text-4xl font-bold text-gray-900">{formatCurrency(totalSpending)}</span>
+      <div className="card mb-6 bg-[var(--surface-color)] border-[var(--border-color)] flex flex-col items-center justify-center p-8 shadow-sm">
+        <span className="text-[var(--text-secondary)] font-medium mb-2 uppercase tracking-widest text-sm">Total Company Spending</span>
+        <span className="text-4xl font-bold text-[var(--text-main)]">{formatCurrency(totalSpending)}</span>
       </div>
 
       <div className="grid-charts">
@@ -125,7 +125,7 @@ const Analytics: React.FC = () => {
                 </PieChart>
               </ResponsiveContainer>
             ) : (
-              <div className="w-full h-full flex items-center justify-center text-gray-400">No data available</div>
+              <div className="w-full h-full flex items-center justify-center text-[var(--text-muted)]">No data available</div>
             )}
           </div>
         </div>
@@ -165,7 +165,7 @@ const Analytics: React.FC = () => {
                 </BarChart>
               </ResponsiveContainer>
             ) : (
-              <div className="w-full h-full flex flex-col items-center justify-center text-gray-400 bg-gray-50 rounded-xl">
+              <div className="w-full h-full flex flex-col items-center justify-center text-[var(--text-muted)] bg-[var(--surface-hover)] rounded-xl border border-[var(--border-color)]">
                 <span className="font-medium">No outstanding liabilities</span>
                 <span className="text-xs mt-1">All employees have been reimbursed.</span>
               </div>

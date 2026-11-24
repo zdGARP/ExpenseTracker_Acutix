@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useCategories, useExpenses } from '../store/ExpenseContext';
-import { Tags, Trash2, Edit2, X, Check } from 'lucide-react';
+import { Tags, Trash2, Edit2, Check } from 'lucide-react';
 import type { Category } from '../types';
 
 const Categories: React.FC = () => {
@@ -111,20 +111,20 @@ const Categories: React.FC = () => {
             <div key={cat.id} className="card flex flex-col justify-between" style={{ backgroundColor: cat.color }}>
               <div className="flex justify-between items-start mb-6">
                 <div 
-                  className="w-12 h-12 rounded-full flex items-center justify-center bg-white/50 backdrop-blur-sm text-[var(--text-main)] shadow-sm"
+                  className="w-12 h-12 rounded-full flex items-center justify-center bg-[var(--surface-color)]/50 backdrop-blur-sm text-[var(--text-main)] shadow-sm"
                 >
                   <Tags size={20} />
                 </div>
-                <div className="flex gap-1 bg-white/50 rounded-lg backdrop-blur-sm p-1">
+                <div className="flex gap-1 bg-[var(--surface-color)]/50 rounded-lg backdrop-blur-sm p-1">
                   <button 
-                    className="p-1.5 text-[var(--text-secondary)] hover:text-[var(--primary)] transition-colors rounded-md hover:bg-white"
+                    className="p-1.5 text-[var(--text-secondary)] hover:text-[var(--primary)] transition-colors rounded-md hover:bg-[var(--surface-color)]"
                     onClick={() => handleEdit(cat)}
                     title="Edit"
                   >
                     <Edit2 size={16} />
                   </button>
                   <button 
-                    className="p-1.5 text-[var(--text-secondary)] hover:text-[var(--danger)] transition-colors rounded-md hover:bg-white"
+                    className="p-1.5 text-[var(--text-secondary)] hover:text-[var(--danger)] transition-colors rounded-md hover:bg-[var(--surface-color)]"
                     onClick={() => handleDelete(cat.id, cat.name)}
                     title="Delete"
                   >
@@ -139,7 +139,7 @@ const Categories: React.FC = () => {
                   <span className="font-semibold text-lg text-[var(--text-main)]">
                     ₹{totalSpent.toLocaleString('en-IN', { maximumFractionDigits: 0 })}
                   </span>
-                  <span className="text-xs font-medium text-[var(--text-secondary)] bg-white/50 px-2 py-1 rounded-full">
+                  <span className="text-xs font-medium text-[var(--text-secondary)] bg-[var(--surface-color)]/50 px-2 py-1 rounded-full">
                     {catExpenses.length} expenses
                   </span>
                 </div>

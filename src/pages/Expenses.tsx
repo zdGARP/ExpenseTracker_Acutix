@@ -92,10 +92,10 @@ const Expenses: React.FC = () => {
   };
 
   const StatusBadge = ({ status }: { status: string }) => {
-    let bgClass = "bg-gray-100 text-gray-600";
+    let bgClass = "bg-[var(--surface-hover)] text-[var(--text-secondary)]";
     if (status === 'Reimbursed') bgClass = "bg-[var(--success-bg)] text-[var(--success-text)]";
-    else if (status === 'Pending Approval') bgClass = "bg-amber-100 text-amber-800";
-    else if (status === 'Approved') bgClass = "bg-blue-100 text-blue-800";
+    else if (status === 'Pending Approval') bgClass = "bg-[var(--pastel-amber)] text-[var(--warning-text)]";
+    else if (status === 'Approved') bgClass = "bg-[var(--info-bg)] text-[var(--info-text)]";
     else if (status === 'Rejected') bgClass = "bg-[var(--danger-bg)] text-[var(--danger)]";
     
     return <span className={`px-2 py-1 rounded-md text-[10px] font-bold uppercase tracking-wide ${bgClass}`}>{status}</span>;
@@ -213,16 +213,16 @@ const Expenses: React.FC = () => {
           ) : (
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-[var(--surface-accent)] border-b border-gray-200">
-                  <th className="p-3 pl-6 cursor-pointer select-none hover:bg-gray-100" onClick={() => handleSort('date')}>
+                <tr className="bg-[var(--surface-accent)] border-b border-[var(--border-light)]">
+                  <th className="p-3 pl-6 cursor-pointer select-none hover:bg-[var(--surface-hover)]" onClick={() => handleSort('date')}>
                     Date <SortIcon field="date" />
                   </th>
-                  <th className="p-3 cursor-pointer select-none hover:bg-gray-100" onClick={() => handleSort('employee')}>
+                  <th className="p-3 cursor-pointer select-none hover:bg-[var(--surface-hover)]" onClick={() => handleSort('employee')}>
                     Submitted By <SortIcon field="employee" />
                   </th>
                   <th className="p-3">Expense Details</th>
                   <th className="p-3">Category</th>
-                  <th className="p-3 text-right cursor-pointer select-none hover:bg-gray-100" onClick={() => handleSort('amount')}>
+                  <th className="p-3 text-right cursor-pointer select-none hover:bg-[var(--surface-hover)]" onClick={() => handleSort('amount')}>
                     Amount <SortIcon field="amount" />
                   </th>
                   <th className="p-3">Reimbursement Info</th>
@@ -237,20 +237,20 @@ const Expenses: React.FC = () => {
                   return (
                     <tr 
                       key={exp.id} 
-                      className="border-b border-gray-200 transition-colors hover:shadow-sm" 
+                      className="border-b border-[var(--border-light)] transition-colors hover:shadow-sm" 
                       style={{ backgroundColor: getCategoryColor(exp.category) + '15' }}
                     >
                       <td className="p-3 pl-6 whitespace-nowrap align-top pt-4">
-                        <div className="font-medium text-gray-700">{formatDate(exp.date)}</div>
-                        <div className="text-xs text-gray-500 mt-1">{format(new Date(exp.date), 'hh:mm a')}</div>
+                        <div className="font-medium text-[var(--text-main)]">{formatDate(exp.date)}</div>
+                        <div className="text-xs text-[var(--text-muted)] mt-1">{format(new Date(exp.date), 'hh:mm a')}</div>
                       </td>
-                      <td className="p-3 align-top pt-4 font-medium text-gray-800">{exp.employee}</td>
+                      <td className="p-3 align-top pt-4 font-medium text-[var(--text-main)]">{exp.employee}</td>
                       <td className="p-3 align-top pt-4">
-                        <div className="font-semibold text-gray-900 max-w-[250px] truncate" title={exp.description}>
+                        <div className="font-semibold text-[var(--text-main)] max-w-[250px] truncate" title={exp.description}>
                           {exp.description}
                         </div>
                         {exp.notes && (
-                          <div className="text-xs text-gray-500 mt-1.5 flex items-start gap-1 max-w-[250px]">
+                          <div className="text-xs text-[var(--text-muted)] mt-1.5 flex items-start gap-1 max-w-[250px]">
                             <FileText size={12} className="mt-0.5 shrink-0" />
                             <span className="truncate" title={exp.notes}>{exp.notes}</span>
                           </div>
@@ -267,7 +267,7 @@ const Expenses: React.FC = () => {
                       </td>
                       <td className="p-3 align-top pt-4">
                         <div className="flex flex-col gap-1.5 items-start">
-                          <div className={`flex items-center gap-1 text-xs font-semibold px-2 py-1 rounded-md ${isEmployeePaid ? 'bg-blue-50 text-blue-700' : 'bg-gray-100 text-gray-600'}`}>
+                          <div className={`flex items-center gap-1 text-xs font-semibold px-2 py-1 rounded-md ${isEmployeePaid ? 'bg-[var(--primary-light)] text-[var(--primary)]' : 'bg-[var(--surface-hover)] text-[var(--text-secondary)]'}`}>
                             {isEmployeePaid ? <User size={12} /> : <Building2 size={12} />}
                             {isEmployeePaid ? 'Employee Paid' : 'Company Paid'}
                           </div>
@@ -289,14 +289,14 @@ const Expenses: React.FC = () => {
                       <td className="p-3 pr-6 align-top pt-4">
                         <div className="flex gap-2 justify-center">
                           <button 
-                            className="p-1.5 text-gray-400 hover:text-blue-600 transition-colors rounded-lg hover:bg-blue-50 bg-white shadow-sm" 
+                            className="p-1.5 text-[var(--text-secondary)] hover:text-[var(--primary)] transition-colors rounded-lg hover:bg-[var(--primary-light)] bg-[var(--surface-color)] shadow-sm" 
                             title="Edit expense"
                             onClick={() => setEditModalId(exp.id)}
                           >
                             <Edit2 size={16} />
                           </button>
                           <button 
-                            className="p-1.5 text-gray-400 hover:text-red-600 transition-colors rounded-lg hover:bg-red-50 bg-white shadow-sm" 
+                            className="p-1.5 text-[var(--text-secondary)] hover:text-[var(--danger)] transition-colors rounded-lg hover:bg-[var(--danger-bg)] bg-[var(--surface-color)] shadow-sm" 
                             title="Delete expense"
                             onClick={() => setDeleteConfirmId(exp.id)}
                           >
@@ -313,8 +313,8 @@ const Expenses: React.FC = () => {
         </div>
 
         {filteredExpenses.length > 0 && (
-          <div className="p-4 border-t border-gray-200 bg-white flex items-center justify-between">
-            <div className="text-sm text-gray-500">
+          <div className="p-4 border-t border-[var(--border-light)] bg-[var(--surface-color)] flex items-center justify-between">
+            <div className="text-sm text-[var(--text-secondary)]">
               Showing <span className="font-medium">{(validCurrentPage - 1) * itemsPerPage + 1}</span> to <span className="font-medium">{Math.min(validCurrentPage * itemsPerPage, filteredExpenses.length)}</span> of <span className="font-medium">{filteredExpenses.length}</span> results
             </div>
             <div className="flex items-center gap-2">

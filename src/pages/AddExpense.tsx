@@ -177,7 +177,7 @@ const AddExpense: React.FC = () => {
                   <CalendarIcon className="absolute left-3 text-[var(--text-muted)] pointer-events-none z-10" size={18} />
                   <DatePicker
                     selected={date}
-                    onChange={(d: Date) => setDate(d)}
+                    onChange={(d: Date | null) => d && setDate(d)}
                     dateFormat="dd/MM/yyyy"
                     className="form-control pl-10"
                     required
@@ -190,7 +190,7 @@ const AddExpense: React.FC = () => {
                   <Clock className="absolute left-3 text-[var(--text-muted)] pointer-events-none z-10" size={18} />
                   <DatePicker
                     selected={time}
-                    onChange={(t: Date) => setTime(t)}
+                    onChange={(t: Date | null) => t && setTime(t)}
                     showTimeSelect
                     showTimeSelectOnly
                     timeIntervals={15}
@@ -238,7 +238,7 @@ const AddExpense: React.FC = () => {
                   step="0.01" 
                   required 
                 />
-                <p className="text-xs text-gray-500 mt-1">This is the TOTAL COMPANY EXPENSE.</p>
+                <p className="text-xs text-[var(--text-muted)] mt-1">This is the TOTAL COMPANY EXPENSE.</p>
               </div>
             </div>
           </div>
@@ -277,7 +277,7 @@ const AddExpense: React.FC = () => {
                   <option value="Company">Company</option>
                   <option value="Employee">Employee</option>
                 </select>
-                <p className="text-xs text-gray-500 mt-1">Whose money was actually used to pay the vendor?</p>
+                <p className="text-xs text-[var(--text-muted)] mt-1">Whose money was actually used to pay the vendor?</p>
               </div>
             </div>
           </div>
@@ -294,9 +294,9 @@ const AddExpense: React.FC = () => {
             {formData.paidBy === 'Company' ? (
               <div className="form-row mb-2">
                 <div className="form-group">
-                  <label className="form-label text-gray-500">Reimbursement Status</label>
-                  <input type="text" className="form-control bg-gray-50 text-gray-500" value="Not Applicable" disabled />
-                  <p className="text-xs text-gray-500 mt-2">The company paid this expense directly.</p>
+                  <label className="form-label text-[var(--text-secondary)]">Reimbursement Status</label>
+                  <input type="text" className="form-control bg-[var(--surface-hover)] text-[var(--text-muted)] border-transparent" value="Not Applicable" disabled />
+                  <p className="text-xs text-[var(--text-muted)] mt-2">The company paid this expense directly.</p>
                 </div>
               </div>
             ) : (
@@ -329,7 +329,7 @@ const AddExpense: React.FC = () => {
                         <CalendarIcon className="absolute left-3 text-[var(--text-muted)] pointer-events-none z-10" size={18} />
                         <DatePicker
                           selected={reimbursedDate || new Date()}
-                          onChange={(d: Date) => setReimbursedDate(d)}
+                          onChange={(d: Date | null) => d && setReimbursedDate(d)}
                           dateFormat="dd/MM/yyyy"
                           className="form-control pl-10"
                           required
@@ -369,7 +369,7 @@ const AddExpense: React.FC = () => {
                    onChange={(e) => {
                      const file = e.target.files?.[0];
                      if (file) {
-                       setFormData(prev => ({ ...prev, receipt: file.name }));
+                       setFormData((prev: any) => ({ ...prev, receipt: file.name }));
                      }
                    }}
                  />

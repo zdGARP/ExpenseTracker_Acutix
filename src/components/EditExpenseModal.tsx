@@ -146,7 +146,7 @@ const EditExpenseModal: React.FC<EditExpenseModalProps> = ({ expenseId, onClose,
                   <label className="form-label">Expense Date</label>
                   <div className="relative flex items-center">
                     <CalendarIcon className="absolute left-3 text-[var(--text-muted)] pointer-events-none z-10" size={16} />
-                    <DatePicker selected={date} onChange={(d: Date) => setDate(d)} dateFormat="dd/MM/yyyy" className="form-control pl-9 text-sm" required />
+                    <DatePicker selected={date} onChange={(d: Date | null) => d && setDate(d)} dateFormat="dd/MM/yyyy" className="form-control pl-9 text-sm" required />
                   </div>
                 </div>
                 <div className="form-group relative">
@@ -155,7 +155,7 @@ const EditExpenseModal: React.FC<EditExpenseModalProps> = ({ expenseId, onClose,
                     <Clock className="absolute left-3 text-[var(--text-muted)] pointer-events-none z-10" size={16} />
                     <DatePicker
                       selected={time}
-                      onChange={(t: Date) => setTime(t)}
+                      onChange={(t: Date | null) => t && setTime(t)}
                       showTimeSelect
                       showTimeSelectOnly
                       timeIntervals={15}
@@ -231,8 +231,8 @@ const EditExpenseModal: React.FC<EditExpenseModalProps> = ({ expenseId, onClose,
               
               {formData.paidBy === 'Company' ? (
                 <div className="form-group">
-                  <label className="form-label text-gray-500">Reimbursement Status</label>
-                  <input type="text" className="form-control text-sm bg-gray-50 text-gray-500" value="Not Applicable" disabled />
+                  <label className="form-label text-[var(--text-secondary)]">Reimbursement Status</label>
+                  <input type="text" className="form-control text-sm bg-[var(--surface-hover)] text-[var(--text-muted)] border-transparent" value="Not Applicable" disabled />
                 </div>
               ) : (
                 <>
@@ -261,7 +261,7 @@ const EditExpenseModal: React.FC<EditExpenseModalProps> = ({ expenseId, onClose,
                         <label className="form-label">Date</label>
                         <div className="relative flex items-center">
                           <CalendarIcon className="absolute left-3 text-[var(--text-muted)] pointer-events-none z-10" size={16} />
-                          <DatePicker selected={reimbursedDate || new Date()} onChange={(d: Date) => setReimbursedDate(d)} dateFormat="dd/MM/yyyy" className="form-control pl-9 text-sm" required />
+                          <DatePicker selected={reimbursedDate || new Date()} onChange={(d: Date | null) => d && setReimbursedDate(d)} dateFormat="dd/MM/yyyy" className="form-control pl-9 text-sm" required />
                         </div>
                       </div>
                     )}

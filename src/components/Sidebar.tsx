@@ -14,31 +14,31 @@ const Sidebar: React.FC = () => {
   const navItems = [
     { 
       to: '/', icon: <LayoutDashboard size={20} />, label: 'Dashboard', 
-      classes: { activeBg: 'bg-blue-50 border-blue-100', hoverBg: 'hover:bg-blue-50/50', activeText: 'text-blue-600', hoverIcon: 'group-hover:text-blue-500', activeLabel: 'text-blue-900', hoverLabel: 'group-hover:text-blue-800' }
+      classes: { activeBg: 'bg-[var(--pastel-blue)] border-[var(--primary)]/20', hoverBg: 'hover:bg-[var(--surface-hover)]', activeText: 'text-[var(--primary)]', hoverIcon: 'group-hover:text-[var(--primary)]', activeLabel: 'text-[var(--text-main)]', hoverLabel: 'group-hover:text-[var(--text-main)]' }
     },
     { 
       to: '/add-expense', icon: <PlusCircle size={20} />, label: 'Add Expense', 
-      classes: { activeBg: 'bg-emerald-50 border-emerald-100', hoverBg: 'hover:bg-emerald-50/50', activeText: 'text-emerald-600', hoverIcon: 'group-hover:text-emerald-500', activeLabel: 'text-emerald-900', hoverLabel: 'group-hover:text-emerald-800' }
+      classes: { activeBg: 'bg-[var(--pastel-green)] border-green-500/20', hoverBg: 'hover:bg-[var(--surface-hover)]', activeText: 'text-[var(--success-text)]', hoverIcon: 'group-hover:text-[var(--success-text)]', activeLabel: 'text-[var(--text-main)]', hoverLabel: 'group-hover:text-[var(--text-main)]' }
     },
     { 
       to: '/expenses', icon: <Receipt size={20} />, label: 'Expenses', 
-      classes: { activeBg: 'bg-orange-50 border-orange-100', hoverBg: 'hover:bg-orange-50/50', activeText: 'text-orange-600', hoverIcon: 'group-hover:text-orange-500', activeLabel: 'text-orange-900', hoverLabel: 'group-hover:text-orange-800' }
+      classes: { activeBg: 'bg-[var(--pastel-amber)] border-orange-500/20', hoverBg: 'hover:bg-[var(--surface-hover)]', activeText: 'text-orange-500', hoverIcon: 'group-hover:text-orange-500', activeLabel: 'text-[var(--text-main)]', hoverLabel: 'group-hover:text-[var(--text-main)]' }
     },
     { 
       to: '/analytics', icon: <PieChart size={20} />, label: 'Analytics', 
-      classes: { activeBg: 'bg-purple-50 border-purple-100', hoverBg: 'hover:bg-purple-50/50', activeText: 'text-purple-600', hoverIcon: 'group-hover:text-purple-500', activeLabel: 'text-purple-900', hoverLabel: 'group-hover:text-purple-800' }
+      classes: { activeBg: 'bg-[var(--pastel-purple)] border-purple-500/20', hoverBg: 'hover:bg-[var(--surface-hover)]', activeText: 'text-purple-500', hoverIcon: 'group-hover:text-purple-500', activeLabel: 'text-[var(--text-main)]', hoverLabel: 'group-hover:text-[var(--text-main)]' }
     },
     { 
       to: '/reports', icon: <Download size={20} />, label: 'Reports', 
-      classes: { activeBg: 'bg-amber-50 border-amber-100', hoverBg: 'hover:bg-amber-50/50', activeText: 'text-amber-600', hoverIcon: 'group-hover:text-amber-500', activeLabel: 'text-amber-900', hoverLabel: 'group-hover:text-amber-800' }
+      classes: { activeBg: 'bg-[var(--pastel-amber)] border-amber-500/20', hoverBg: 'hover:bg-[var(--surface-hover)]', activeText: 'text-[var(--warning-text)]', hoverIcon: 'group-hover:text-[var(--warning-text)]', activeLabel: 'text-[var(--text-main)]', hoverLabel: 'group-hover:text-[var(--text-main)]' }
     },
     { 
       to: '/categories', icon: <Tags size={20} />, label: 'Categories', 
-      classes: { activeBg: 'bg-teal-50 border-teal-100', hoverBg: 'hover:bg-teal-50/50', activeText: 'text-teal-600', hoverIcon: 'group-hover:text-teal-500', activeLabel: 'text-teal-900', hoverLabel: 'group-hover:text-teal-800' }
+      classes: { activeBg: 'bg-[var(--pastel-teal)] border-teal-500/20', hoverBg: 'hover:bg-[var(--surface-hover)]', activeText: 'text-teal-500', hoverIcon: 'group-hover:text-teal-500', activeLabel: 'text-[var(--text-main)]', hoverLabel: 'group-hover:text-[var(--text-main)]' }
     },
     { 
       to: '/settings', icon: <Settings size={20} />, label: 'Settings', 
-      classes: { activeBg: 'bg-slate-100 border-slate-200', hoverBg: 'hover:bg-slate-50', activeText: 'text-slate-600', hoverIcon: 'group-hover:text-slate-500', activeLabel: 'text-slate-900', hoverLabel: 'group-hover:text-slate-800' }
+      classes: { activeBg: 'bg-[var(--pastel-gray)] border-[var(--border-color)]', hoverBg: 'hover:bg-[var(--surface-hover)]', activeText: 'text-[var(--text-main)]', hoverIcon: 'group-hover:text-[var(--text-main)]', activeLabel: 'text-[var(--text-main)]', hoverLabel: 'group-hover:text-[var(--text-main)]' }
     },
   ];
 

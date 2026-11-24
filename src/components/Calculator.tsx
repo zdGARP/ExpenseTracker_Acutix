@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Calculator as CalculatorIcon, X, Delete } from 'lucide-react';
+import { Calculator as CalculatorIcon } from 'lucide-react';
 
 interface CalculatorProps {
   onUseResult?: (value: number) => void;
@@ -90,18 +90,6 @@ const Calculator: React.FC<CalculatorProps> = ({ onUseResult }) => {
     setHasError(false);
   };
 
-  const handleDelete = () => {
-    if (hasError) {
-      handleClear();
-      return;
-    }
-    if (display.length > 1) {
-      setDisplay(display.slice(0, -1));
-    } else {
-      setDisplay('0');
-    }
-  };
-
   const handleUseResult = () => {
     if (!hasError && display !== '0' && !['+', '-', '×', '÷'].includes(display.slice(-1))) {
       // Try to calculate if it's an uncompleted equation
@@ -165,7 +153,7 @@ const Calculator: React.FC<CalculatorProps> = ({ onUseResult }) => {
     <div className="relative" ref={containerRef}>
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-4 py-2 bg-white border border-[var(--border-color)] shadow-sm rounded-full text-[var(--text-secondary)] hover:text-[var(--primary)] hover:border-[var(--primary)]/30 hover:shadow-md transition-all font-medium text-sm"
+        className="flex items-center gap-2 px-4 py-2 bg-[var(--surface-color)] border border-[var(--border-color)] shadow-sm rounded-full text-[var(--text-secondary)] hover:text-[var(--primary)] hover:border-[var(--primary)]/30 hover:shadow-md transition-all font-medium text-sm"
       >
         <CalculatorIcon size={16} />
         <span>Calculator</span>

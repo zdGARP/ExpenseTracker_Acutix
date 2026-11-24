@@ -48,9 +48,9 @@ const Reports: React.FC = () => {
       workbook.created = new Date();
 
       const headerFill: ExcelJS.Fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF2563EB' } };
-      const headerFont: ExcelJS.Font = { color: { argb: 'FFFFFFFF' }, bold: true };
+      const headerFont: Partial<ExcelJS.Font> = { color: { argb: 'FFFFFFFF' }, bold: true };
       const currencyFormat = '₹#,##0.00';
-      const borderStyle: ExcelJS.Borders = {
+      const borderStyle: Partial<ExcelJS.Borders> = {
         top: { style: 'thin', color: { argb: 'FFD4D4D4' } }, left: { style: 'thin', color: { argb: 'FFD4D4D4' } },
         bottom: { style: 'thin', color: { argb: 'FFD4D4D4' } }, right: { style: 'thin', color: { argb: 'FFD4D4D4' } }
       };
@@ -223,24 +223,24 @@ const Reports: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
-        <div className="card p-4 border border-[var(--border-light)] bg-white shadow-sm flex flex-col justify-center">
-          <div className="flex items-center gap-2 text-gray-500 mb-1"><Building2 size={14} /> <span className="text-xs font-semibold">COMPANY TOTAL</span></div>
+        <div className="card p-4 border border-[var(--border-light)] bg-[var(--surface-color)] shadow-sm flex flex-col justify-center">
+          <div className="flex items-center gap-2 text-[var(--text-secondary)] mb-1"><Building2 size={14} /> <span className="text-xs font-semibold">COMPANY TOTAL</span></div>
           <div className="text-xl font-bold">{formatCurrency(previewStats.total)}</div>
         </div>
-        <div className="card p-4 border border-[var(--border-light)] bg-white shadow-sm flex flex-col justify-center">
+        <div className="card p-4 border border-[var(--border-light)] bg-[var(--surface-color)] shadow-sm flex flex-col justify-center">
           <div className="flex items-center gap-2 text-orange-600 mb-1"><Wallet size={14} /> <span className="text-xs font-semibold">TOTAL OWED</span></div>
           <div className="text-xl font-bold">{formatCurrency(previewStats.owed)}</div>
         </div>
-        <div className="card p-4 border border-[var(--border-light)] bg-white shadow-sm flex flex-col justify-center">
-          <div className="flex items-center gap-2 text-amber-600 mb-1"><Clock size={14} /> <span className="text-xs font-semibold">PENDING</span></div>
+        <div className="card p-4 border border-[var(--border-light)] bg-[var(--surface-color)] shadow-sm flex flex-col justify-center">
+          <div className="flex items-center gap-2 text-[var(--warning-text)] mb-1"><Clock size={14} /> <span className="text-xs font-semibold">PENDING</span></div>
           <div className="text-xl font-bold">{formatCurrency(previewStats.pending)}</div>
         </div>
-        <div className="card p-4 border border-[var(--border-light)] bg-white shadow-sm flex flex-col justify-center">
-          <div className="flex items-center gap-2 text-blue-600 mb-1"><CheckSquare size={14} /> <span className="text-xs font-semibold">APPROVED</span></div>
+        <div className="card p-4 border border-[var(--border-light)] bg-[var(--surface-color)] shadow-sm flex flex-col justify-center">
+          <div className="flex items-center gap-2 text-[var(--info-text)] mb-1"><CheckSquare size={14} /> <span className="text-xs font-semibold">APPROVED</span></div>
           <div className="text-xl font-bold">{formatCurrency(previewStats.approved)}</div>
         </div>
-        <div className="card p-4 border border-[var(--border-light)] bg-white shadow-sm flex flex-col justify-center">
-          <div className="flex items-center gap-2 text-green-600 mb-1"><CheckCircle size={14} /> <span className="text-xs font-semibold">REIMBURSED</span></div>
+        <div className="card p-4 border border-[var(--border-light)] bg-[var(--surface-color)] shadow-sm flex flex-col justify-center">
+          <div className="flex items-center gap-2 text-[var(--success-text)] mb-1"><CheckCircle size={14} /> <span className="text-xs font-semibold">REIMBURSED</span></div>
           <div className="text-xl font-bold">{formatCurrency(previewStats.reimbursed)}</div>
         </div>
       </div>
@@ -289,7 +289,7 @@ const Reports: React.FC = () => {
       </div>
 
       <div className="grid-cards mb-6">
-        <div className="card border border-blue-100 bg-blue-50/20">
+        <div className="card border-[var(--primary)] bg-[var(--primary-light)]">
           <div className="flex items-center gap-4 mb-6">
             <div className="p-4 bg-[var(--pastel-blue)] text-blue-700 rounded-xl"><FileSpreadsheet size={32} /></div>
             <div>
@@ -322,7 +322,7 @@ const Reports: React.FC = () => {
         </div>
       )}
 
-      <div className="card mt-6 border-none bg-white shadow-sm">
+      <div className="card mt-6 border-none shadow-sm">
         <h3 className="font-semibold mb-4 text-lg">What's included in the report?</h3>
         <ul className="text-secondary space-y-2 text-sm" style={{listStyleType: 'disc', paddingLeft: '1.5rem'}}>
           <li><strong>Sheet 1: Expense Details</strong> - Raw data with exact reimbursement breakdowns.</li>

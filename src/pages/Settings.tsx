@@ -27,6 +27,20 @@ const Settings: React.FC = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
+    
+    // Immediately apply theme change for better UX
+    if (name === 'appearance') {
+      const root = document.documentElement;
+      if (
+        value === 'dark' ||
+        (value === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)
+      ) {
+        root.classList.add('dark');
+      } else {
+        root.classList.remove('dark');
+      }
+    }
+
     setFormData(prev => ({
       ...prev,
       [name]: name === 'financialYearStartMonth' ? Number(value) : value
@@ -181,7 +195,7 @@ const Settings: React.FC = () => {
                   name="notificationsEnabled"
                   checked={formData.notificationsEnabled}
                   onChange={(e) => setFormData(prev => ({ ...prev, notificationsEnabled: e.target.checked }))}
-                  className="w-5 h-5 text-[var(--primary)] rounded focus:ring-[var(--primary)] border-gray-300"
+                  className="w-5 h-5 text-[var(--primary)] rounded focus:ring-[var(--primary)] border-[var(--border-color)] bg-[var(--surface-color)]"
                 />
                 <span className="text-[var(--text-main)] font-medium">Enable In-App Notifications</span>
               </label>

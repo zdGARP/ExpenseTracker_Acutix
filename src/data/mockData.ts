@@ -1,7 +1,4 @@
 import type { Expense, Category, Settings } from '../types';
-import { subDays, format } from 'date-fns';
-
-const today = new Date();
 
 export const DEFAULT_SETTINGS: Settings = {
   companyName: 'Acutix Soft LLP',

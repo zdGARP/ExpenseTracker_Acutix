@@ -1,28 +1,21 @@
 import React, { useMemo } from 'react';
-import { useExpenses, useCategories } from '../store/ExpenseContext';
+import { useExpenses } from '../store/ExpenseContext';
 import { formatCurrency } from '../utils/formatters';
 import { 
   IndianRupee, 
-  TrendingUp, 
-  Calendar, 
-  CreditCard,
-  Tags,
   ArrowUpRight,
   Wallet,
   Clock,
   CheckCircle,
-  Building2,
   Users
 } from 'lucide-react';
 import { parseISO, format } from 'date-fns';
 import { 
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-  PieChart, Pie, Cell
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
 } from 'recharts';
 
 const Dashboard: React.FC = () => {
   const { expenses } = useExpenses();
-  const { categories } = useCategories();
   const [timeFilter, setTimeFilter] = React.useState('All Time');
 
   const filteredExpenses = useMemo(() => {
@@ -145,7 +138,7 @@ const Dashboard: React.FC = () => {
     }).slice(-6);
   }, [filteredExpenses]);
 
-  const KPICard = ({ title, value, icon, subtitle, trend, accentBg, accentText }: any) => (
+  const KPICard = ({ title, value, icon, trend, accentBg, accentText }: any) => (
     <div className="card flex flex-col justify-between hover:-translate-y-1 transition-transform duration-300">
       <div className="flex justify-between items-start mb-2">
         <div className={`w-10 h-10 rounded-full flex items-center justify-center ${accentBg} ${accentText}`}>
@@ -189,8 +182,8 @@ const Dashboard: React.FC = () => {
           title="Total Company Expenses" 
           value={formatCurrency(stats.totalExpenses)} 
           icon={<IndianRupee size={20} />}
-          accentBg="bg-gray-100"
-          accentText="text-gray-800"
+          accentBg="bg-[var(--pastel-gray)]"
+          accentText="text-[var(--text-main)]"
         />
         <KPICard 
           title="Owed to Employees" 
@@ -203,8 +196,8 @@ const Dashboard: React.FC = () => {
           title="Pending Approvals" 
           value={formatCurrency(stats.pendingApprovals)} 
           icon={<Clock size={20} />}
-          accentBg="bg-amber-100"
-          accentText="text-amber-600"
+          accentBg="bg-[var(--pastel-amber)]"
+          accentText="text-[var(--warning-text)]"
         />
         <KPICard 
           title="Reimbursed This Month" 
@@ -217,10 +210,10 @@ const Dashboard: React.FC = () => {
 
       <div className="dashboard-layout !gap-6">
         {/* Main Chart */}
-        <div className="dashboard-main bg-white rounded-[var(--radius-lg)] shadow-sm border border-[var(--border-color)] p-6">
+        <div className="dashboard-main bg-[var(--surface-color)] rounded-[var(--radius-lg)] shadow-sm border border-[var(--border-color)] p-6">
           <h3 className="font-semibold text-lg mb-6 flex items-center gap-2">
             Spending Trend 
-            <span className="text-xs font-normal text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">Company vs Employee Paid</span>
+            <span className="text-xs font-normal text-[var(--text-secondary)] bg-[var(--surface-hover)] px-2 py-0.5 rounded-full">Company vs Employee Paid</span>
           </h3>
           <div className="h-[300px]">
             {monthlyData.length > 0 ? (
@@ -232,7 +225,7 @@ const Dashboard: React.FC = () => {
                   <Tooltip 
                     cursor={{ fill: 'var(--surface-hover)' }}
                     contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: 'var(--shadow-md)' }}
-                    formatter={(value: number, name: string) => [formatCurrency(value), name === 'company' ? 'Company Paid' : 'Employee Paid']}
+                    formatter={(value: any, name: any) => [formatCurrency(value), name === 'company' ? 'Company Paid' : 'Employee Paid']}
                   />
                   <Bar dataKey="company" stackId="a" fill="var(--primary)" radius={[0, 0, 4, 4]} />
                   <Bar dataKey="employee" stackId="a" fill="#14B8A6" radius={[4, 4, 0, 0]} />
@@ -247,10 +240,10 @@ const Dashboard: React.FC = () => {
         </div>
 
         {/* Right Panel: Employee Reimbursements */}
-        <div className="dashboard-sidebar bg-white rounded-[var(--radius-lg)] shadow-sm border border-[var(--border-color)] p-6 flex flex-col">
+        <div className="dashboard-sidebar bg-[var(--surface-color)] rounded-[var(--radius-lg)] shadow-sm border border-[var(--border-color)] p-6 flex flex-col">
           <div className="flex justify-between items-center mb-6">
             <h3 className="font-semibold text-lg">Reimbursements</h3>
-            <div className="w-8 h-8 rounded-full bg-orange-50 text-orange-600 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-full bg-[var(--pastel-amber)] text-[var(--warning-text)] flex items-center justify-center">
               <Users size={16} />
             </div>
           </div>
@@ -258,30 +251,30 @@ const Dashboard: React.FC = () => {
           <div className="flex-1 overflow-y-auto pr-2 -mr-2 space-y-4">
             {employeeData.length > 0 ? (
               employeeData.map(emp => (
-                <div key={emp.name} className="flex flex-col gap-1.5 p-3 rounded-xl bg-[var(--surface-hover)] border border-[var(--border-light)] transition-colors hover:bg-gray-100/80 cursor-pointer">
+                <div key={emp.name} className="flex flex-col gap-1.5 p-3 rounded-xl bg-[var(--surface-hover)] border border-[var(--border-light)] transition-colors hover:bg-[var(--surface-accent)] cursor-pointer">
                   <div className="flex justify-between items-center">
-                    <span className="font-semibold text-sm text-gray-800">{emp.name}</span>
-                    <span className="font-bold text-orange-600 text-sm">Owes: {formatCurrency(emp.owed)}</span>
+                    <span className="font-semibold text-sm text-[var(--text-main)]">{emp.name}</span>
+                    <span className="font-bold text-[var(--warning-text)] text-sm">Owes: {formatCurrency(emp.owed)}</span>
                   </div>
                   <div className="flex justify-between text-xs">
                     <div className="flex flex-col">
-                      <span className="text-gray-400">Pending</span>
-                      <span className="font-medium text-amber-600">{formatCurrency(emp.pending)}</span>
+                      <span className="text-[var(--text-muted)]">Pending</span>
+                      <span className="font-medium text-[var(--warning-text)]">{formatCurrency(emp.pending)}</span>
                     </div>
                     <div className="flex flex-col text-center">
-                      <span className="text-gray-400">Approved</span>
-                      <span className="font-medium text-blue-600">{formatCurrency(emp.approved)}</span>
+                      <span className="text-[var(--text-muted)]">Approved</span>
+                      <span className="font-medium text-[var(--info-text)]">{formatCurrency(emp.approved)}</span>
                     </div>
                     <div className="flex flex-col text-right">
-                      <span className="text-gray-400">Reimbursed</span>
-                      <span className="font-medium text-green-600">{formatCurrency(emp.reimbursed)}</span>
+                      <span className="text-[var(--text-muted)]">Reimbursed</span>
+                      <span className="font-medium text-[var(--success-text)]">{formatCurrency(emp.reimbursed)}</span>
                     </div>
                   </div>
                 </div>
               ))
             ) : (
               <div className="h-full flex flex-col items-center justify-center text-[var(--text-muted)] text-center py-8">
-                <Users size={32} className="mb-2 text-gray-300" />
+                <Users size={32} className="mb-2 text-[var(--text-muted)]" />
                 <span className="text-sm font-medium">No employee reimbursements</span>
                 <span className="text-xs mt-1">Expenses paid directly by the company don't require reimbursement.</span>
               </div>

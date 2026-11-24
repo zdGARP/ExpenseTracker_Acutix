@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Bell, User, Check } from 'lucide-react';
+import { Search, Bell } from 'lucide-react';
 import { useSettings, useExpenses } from '../store/ExpenseContext';
 import { format } from 'date-fns';
 
@@ -40,22 +40,22 @@ const TopNav: React.FC = () => {
           onClick={() => { setShowNotifications(!showNotifications); if(unreadCount > 0) markNotificationsRead(); }}
         >
           <Bell size={20} />
-          {unreadCount > 0 && <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-[var(--danger)] rounded-full border-2 border-white"></span>}
+          {unreadCount > 0 && <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-[var(--danger)] rounded-full border-2 border-[var(--surface-color)]"></span>}
         </button>
         
         {showNotifications && (
-          <div className="absolute top-12 right-12 w-80 bg-white shadow-[var(--shadow-lg)] rounded-[var(--radius-lg)] border border-[var(--border-color)] overflow-hidden z-50">
+          <div className="absolute top-12 right-12 w-80 bg-[var(--surface-color)] shadow-[var(--shadow-lg)] rounded-[var(--radius-lg)] border border-[var(--border-color)] overflow-hidden z-50">
             <div className="p-4 border-b border-[var(--border-color)] bg-[var(--surface-accent)]">
               <h4 className="font-bold">Notifications</h4>
             </div>
             <div className="max-h-80 overflow-y-auto">
               {notifications.length === 0 ? (
-                <div className="p-6 text-center text-gray-500 text-sm">No recent activity</div>
+                <div className="p-6 text-center text-[var(--text-muted)] text-sm">No recent activity</div>
               ) : (
                 notifications.map((n: any) => (
-                  <div key={n.id} className={`p-4 border-b border-gray-100 last:border-0 ${!n.read ? 'bg-blue-50/30' : ''}`}>
-                    <p className="text-sm font-medium text-gray-800">{n.text}</p>
-                    <p className="text-xs text-gray-500 mt-1">{format(new Date(n.time), 'MMM d, h:mm a')}</p>
+                  <div key={n.id} className={`p-4 border-b border-[var(--border-light)] last:border-0 ${!n.read ? 'bg-[var(--primary-light)]' : ''}`}>
+                    <p className="text-sm font-medium text-[var(--text-main)]">{n.text}</p>
+                    <p className="text-xs text-[var(--text-muted)] mt-1">{format(new Date(n.time), 'MMM d, h:mm a')}</p>
                   </div>
                 ))
               )}
